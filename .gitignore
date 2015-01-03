@@ -1,0 +1,35 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+#exclued obj file
+*.sdf
+#github 限制的单个文件的最大size是100M，故libcef.dll不上传
+*.filters
+*.tlog
+*.pdb

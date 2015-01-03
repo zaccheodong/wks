@@ -1,0 +1,100 @@
+﻿生成启动时间为 2015/1/2 17:18:56。
+     1>项目“E:\code\github\cef\cef_binary_3.1750.1738_windows32\cefclient.vcxproj”在节点 3 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“out\Debug\obj\cefclient\cefclient.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       CustomBuild:
+         copy_resources, and also copy_libraries
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\cef.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\cef.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\devtools_resources.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\devtools_resources.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\am.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\am.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\ar.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\ar.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\bg.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\bg.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\bn.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\bn.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\ca.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\ca.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\cs.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\cs.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\da.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\da.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\de.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\de.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\el.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\el.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\en-GB.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\en-GB.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\en-US.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\en-US.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\es-419.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\es-419.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\es.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\es.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\et.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\et.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\fa.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\fa.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\fi.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\fi.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\fil.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\fil.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\fr.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\fr.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\gu.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\gu.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\he.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\he.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\hi.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\hi.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\hr.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\hr.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\hu.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\hu.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\id.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\id.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\it.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\it.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\ja.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\ja.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\kn.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\kn.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\ko.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\ko.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\lt.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\lt.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\lv.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\lv.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\ml.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\ml.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\mr.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\mr.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\ms.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\ms.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\nb.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\nb.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\nl.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\nl.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\pl.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\pl.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\pt-BR.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\pt-BR.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\pt-PT.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\pt-PT.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\ro.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\ro.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\ru.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\ru.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\sk.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\sk.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\sl.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\sl.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\sr.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\sr.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\sv.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\sv.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\sw.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\sw.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\ta.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\ta.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\te.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\te.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\th.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\th.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\tr.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\tr.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\uk.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\uk.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\vi.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\vi.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\zh-CN.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\zh-CN.pak
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Resources\locales\zh-TW.pak -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\locales\zh-TW.pak
+         复制了 55 个文件
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Debug\d3dcompiler_43.dll -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\d3dcompiler_43.dll
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Debug\d3dcompiler_46.dll -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\d3dcompiler_46.dll
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Debug\ffmpegsumo.dll -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\ffmpegsumo.dll
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Debug\icudt.dll -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\icudt.dll
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Debug\libcef.dll -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\libcef.dll
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Debug\libEGL.dll -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\libEGL.dll
+         E:\code\github\cef\cef_binary_3.1750.1738_windows32\Debug\libGLESv2.dll -> E:\code\github\cef\cef_binary_3.1750.1738_windows32\out\Debug\libGLESv2.dll
+         复制了 7 个文件
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\..\third_party\wtl\include /I. /I"C:\Program Files (x86)\Windows Kits\8.0\Include\shared" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\um" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\winrt" /I"c:\Program Files (x86)\Microsoft Visual Studio 10.0\\VC\atlmfc\include" /Zi /nologo /W4 /WX /Od /Oy- /D _DEBUG /D V8_DEPRECATION_WARNINGS /D _WIN32_WINNT=0x0602 /D WINVER=0x0602 /D WIN32 /D _WINDOWS /D NOMINMAX /D PSAPI_VERSION=1 /D _CRT_RAND_S /D CERT_CHAIN_PARA_HAS_EXTRA_FIELDS /D WIN32_LEAN_AND_MEAN /D _ATL_NO_OPENGL /D _HAS_EXCEPTIONS=0 /D _SECURE_ATL /D CHROMIUM_BUILD /D TOOLKIT_VIEWS=1 /D USE_AURA=1 /D USE_ASH=1 /D USE_LIBJPEG_TURBO=1 /D ENABLE_ONE_CLICK_SIGNIN /D ENABLE_REMOTING=1 /D ENABLE_WEBRTC=1 /D ENABLE_PEPPER_CDMS /D ENABLE_CONFIGURATION_POLICY /D ENABLE_INPUT_SPEECH /D ENABLE_NOTIFICATIONS /D ICU_UTIL_DATA_IMPL=ICU_UTIL_DATA_SHARED /D ENABLE_EGLIMAGE=1 /D __STD_C /D _CRT_SECURE_NO_DEPRECATE /D _SCL_SECURE_NO_DEPRECATE /D NTDDI_VERSION=0x06020000 /D _USING_V110_SDK71_ /D ENABLE_TASK_MANAGER=1 /D ENABLE_EXTENSIONS=1 /D ENABLE_PLUGIN_INSTALLATION=1 /D ENABLE_PLUGINS=1 /D ENABLE_SESSION_SERVICE=1 /D ENABLE_THEMES=1 /D ENABLE_AUTOFILL_DIALOG=1 /D ENABLE_BACKGROUND=1 /D ENABLE_AUTOMATION=1 /D ENABLE_GOOGLE_NOW=1 /D CLD_VERSION=2 /D ENABLE_FULL_PRINTING=1 /D ENABLE_PRINTING=1 /D ENABLE_SPELLCHECK=1 /D ENABLE_CAPTIVE_PORTAL_DETECTION=1 /D ENABLE_APP_LIST=1 /D ENABLE_SETTINGS_APP=1 /D ENABLE_MANAGED_USERS=1 /D ENABLE_MDNS=1 /D USING_CEF_SHARED /D __STDC_CONSTANT_MACROS /D __STDC_FORMAT_MACROS /D DYNAMIC_ANNOTATIONS_ENABLED=1 /D WTF_USE_DYNAMIC_ANNOTATIONS=1 /D _UNICODE /D UNICODE /Gm- /RTC1 /MTd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /GR- /Fo"out\Debug\obj\cefclient\\" /Fd"out\Debug\obj\cefclient\vc100.pdb" /Gd /TP /wd4351 /wd4355 /wd4396 /wd4503 /wd4819 /wd4100 /wd4121 /wd4125 /wd4127 /wd4130 /wd4131 /wd4189 /wd4201 /wd4238 /wd4244 /wd4245 /wd4310 /wd4428 /wd4481 /wd4505 /wd4510 /wd4512 /wd4530 /wd4610 /wd4611 /wd4701 /wd4702 /wd4706 /analyze- /errorReport:prompt cefclient\performance_test_tests.cpp cefclient\cefclient_win.cpp cefclient\window_test_win.cpp cefclient\client_switches.cpp cefclient\osrenderer.cpp cefclient\dom_test.cpp cefclient\dialog_test.cpp cefclient\client_renderer.cpp cefclient\client_app.cpp cefclient\window_test.cpp cefclient\cefclient_osr_widget_win.cpp cefclient\cefclient.cpp cefclient\string_util.cpp cefclient\client_app_delegates.cpp cefclient\performance_test.cpp cefclient\client_handler.cpp cefclient\scheme_test.cpp cefclient\resource_util_win.cpp cefclient\client_handler_win.cpp cefclient\binding_test.cpp /MP /we4389 
+         performance_test_tests.cpp
+         cefclient_win.cpp
+         window_test_win.cpp
+         client_switches.cpp
+         osrenderer.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.0\Include\um\gl/gl.h(22): fatal error C1083: 无法打开包括文件:“winapifamily.h”: No such file or directory
+         dom_test.cpp
+         dialog_test.cpp
+         client_renderer.cpp
+         client_app.cpp
+         window_test.cpp
+         cefclient_osr_widget_win.cpp
+         cefclient.cpp
+         string_util.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.0\Include\shared\windowsx.h(17): fatal error C1083: 无法打开包括文件:“winapifamily.h”: No such file or directory
+         client_app_delegates.cpp
+         performance_test.cpp
+         client_handler.cpp
+         scheme_test.cpp
+         resource_util_win.cpp
+         client_handler_win.cpp
+         binding_test.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.0\Include\um\shlobj.h(12): fatal error C1083: 无法打开包括文件:“winapifamily.h”: No such file or directory
+     1>已完成生成项目“E:\code\github\cef\cef_binary_3.1750.1738_windows32\cefclient.vcxproj”(build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:06.95
