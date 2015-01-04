@@ -6,12 +6,14 @@
 #include "mfcwithcef3.h"
 #include "mfcwithcef3Dlg.h"
 
-#include "CefAppImpl.h"
+#include "simple_app.h"
+#include "simple_handler.h" 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 
+#define CEF_ENABLE_SANDBOX 0
 // Cmfcwithcef3App
 
 BEGIN_MESSAGE_MAP(Cmfcwithcef3App, CWinApp)
@@ -49,7 +51,49 @@ BOOL Cmfcwithcef3App::InitInstance()
 
 	CWinApp::InitInstance();
 
-	CCefAppImpl::Instance()->Init(this->m_hInstance);
+	
+
+	void* sandbox_info = NULL;
+
+#if CEF_ENABLE_SANDBOX
+	// Manage the life span of the sandbox information object. This is necessary
+	// for sandbox support on Windows. See cef_sandbox_win.h for complete details.
+	CefScopedSandboxInfo scoped_sandbox;
+	sandbox_info = scoped_sandbox.sandbox_info();
+#endif
+
+	// Provide CEF with command-line arguments.
+	CefMainArgs main_args(this->m_hInstance);
+
+	// SimpleApp implements application-level callbacks. It will create the first
+	// browser instance in OnContextInitialized() after CEF has initialized.
+	CefRefPtr<SimpleApp> app(new SimpleApp);
+
+	// CEF applications have multiple sub-processes (render, plugin, GPU, etc)
+	// that share the same executable. This function checks the command-line and,
+	// if this is a sub-process, executes the appropriate logic.
+	int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
+	if (exit_code >= 0) {
+		// The sub-process has completed so return here.
+		return exit_code;
+	}
+
+	// Specify CEF global settings here.
+	CefSettings settings;
+
+#if !CEF_ENABLE_SANDBOX
+	settings.no_sandbox = true;
+#endif
+
+	// Initialize CEF.
+	CefInitialize(main_args, settings, app.get(), sandbox_info);
+
+	// Run the CEF message loop. This will block until CefQuitMessageLoop() is
+	// called.
+	//CefRunMessageLoop();
+
+	// Shut down CEF.
+	//CefShutdown();
 
 	AfxEnableControlContainer();
 
@@ -86,7 +130,6 @@ BOOL Cmfcwithcef3App::InitInstance()
 		delete pShellManager;
 	}
 
-	CCefAppImpl::Instance()->Shutdown();
 
 	// 由于对话框已关闭，所以将返回 FALSE 以便退出应用程序，
 	//  而不是启动应用程序的消息泵。
@@ -97,11 +140,7 @@ BOOL Cmfcwithcef3App::InitInstance()
 
 BOOL Cmfcwithcef3App::PumpMessage()
 {
-	// TODO: 在此添加专用代码和/或调用基类
-	if (CCefAppImpl::Instance()->IsInited())
-	{
-		CefDoMessageLoopWork();
-	}
 	
+	CefDoMessageLoopWork();
 	return CWinApp::PumpMessage();
 }

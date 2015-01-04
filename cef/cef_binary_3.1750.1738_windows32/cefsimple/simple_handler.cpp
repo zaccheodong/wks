@@ -109,3 +109,22 @@ void SimpleHandler::CloseAllBrowsers(bool force_close) {
   for (; it != browser_list_.end(); ++it)
     (*it)->GetHost()->CloseBrowser(force_close);
 }
+
+void SimpleHandler::OnContainerWndSizeChanged(HWND hParent)
+{
+	RECT rcClient;
+	::GetClientRect(hParent,rcClient);
+
+	const int margin = 1;//1px;
+
+	CRect rcBrowser(rcClient);
+	rcBrowser.DeflateRect(margin,margin);
+
+	BrowserList::const_iterator it = browser_list_.begin();
+	for (; it != browser_list_.end(); ++it)
+	{
+		HWND hWnd = (*it)->GetHost()->GetWindowHandle();
+		::MoveWindow(hWnd,rcBrowser.left,rcBrowser.top,rcBrowser.Width(),rcBrowser.Height(),true);	
+	}
+	
+}

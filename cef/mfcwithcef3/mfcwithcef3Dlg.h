@@ -28,5 +28,10 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg VOID OnSize(UINT nType, int cx, int cy);
 	DECLARE_MESSAGE_MAP()
+private:
+	void CreateBrowser();
+	void CreateBrowserAsChildWnd();
+	void ReposBrowserPos();
 };
