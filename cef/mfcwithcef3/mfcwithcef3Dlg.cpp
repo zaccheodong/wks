@@ -67,6 +67,8 @@ BEGIN_MESSAGE_MAP(Cmfcwithcef3Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_WM_SIZE()
+	ON_WM_ERASEBKGND()
+	ON_WM_DESTROY()
 END_MESSAGE_MAP()
 
 
@@ -237,3 +239,20 @@ void Cmfcwithcef3Dlg::ReposBrowserPos()
 	g_handler->OnContainerWndSizeChanged(GetSafeHwnd());
 }
 
+
+
+BOOL Cmfcwithcef3Dlg::OnEraseBkgnd(CDC* pDC)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	return true;
+	return CDialogEx::OnEraseBkgnd(pDC);
+}
+
+
+void Cmfcwithcef3Dlg::OnDestroy()
+{
+	CDialogEx::OnDestroy();
+
+	// TODO: 在此处添加消息处理程序代码
+	g_handler->CloseAllBrowsers(true);
+}

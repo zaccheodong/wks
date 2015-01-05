@@ -34,4 +34,7 @@ private:
 	void CreateBrowser();
 	void CreateBrowserAsChildWnd();
 	void ReposBrowserPos();
+public:
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnDestroy();
 };
