@@ -38,3 +38,6 @@
 *.log
 *.user
 *.unsuccessfulbuild
+*.aps
+*.cache
+/ipch
