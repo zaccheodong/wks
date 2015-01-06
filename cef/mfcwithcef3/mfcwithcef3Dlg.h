@@ -37,4 +37,7 @@ private:
 public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnDestroy();
+	afx_msg void OnClose();
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton2();
 };

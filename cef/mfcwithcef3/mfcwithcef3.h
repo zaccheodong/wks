@@ -14,7 +14,7 @@
 // Cmfcwithcef3App:
 // 有关此类的实现，请参阅 mfcwithcef3.cpp
 //
-
+#include "simple_app.h"
 class Cmfcwithcef3App : public CWinApp
 {
 public:
@@ -28,6 +28,10 @@ public:
 
 	DECLARE_MESSAGE_MAP()
 	virtual BOOL PumpMessage();
+	virtual int ExitInstance();
+
+private:
+	CefRefPtr<SimpleApp> cefapp_;
 };
 
 extern Cmfcwithcef3App theApp;

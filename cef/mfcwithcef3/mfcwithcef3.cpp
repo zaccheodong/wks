@@ -13,6 +13,7 @@
 #endif
 
 
+
 #define CEF_ENABLE_SANDBOX 0
 // Cmfcwithcef3App
 
@@ -50,9 +51,7 @@ BOOL Cmfcwithcef3App::InitInstance()
 	InitCommonControlsEx(&InitCtrls);
 
 	CWinApp::InitInstance();
-
 	
-
 	void* sandbox_info = NULL;
 
 #if CEF_ENABLE_SANDBOX
@@ -67,16 +66,19 @@ BOOL Cmfcwithcef3App::InitInstance()
 
 	// SimpleApp implements application-level callbacks. It will create the first
 	// browser instance in OnContextInitialized() after CEF has initialized.
-	CefRefPtr<SimpleApp> app(new SimpleApp);
+	cefapp_ = new SimpleApp();
 
 	// CEF applications have multiple sub-processes (render, plugin, GPU, etc)
 	// that share the same executable. This function checks the command-line and,
 	// if this is a sub-process, executes the appropriate logic.
-	int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
+	int exit_code = CefExecuteProcess(main_args, cefapp_.get(), sandbox_info);
 	if (exit_code >= 0) {
-		// The sub-process has completed so return here.
-		return exit_code;
+		// render 和 gpu进程的返回值>=0,必须直接返回false导致，CWinApp的ExitInstance被调用		
+		return FALSE;		
 	}
+	
+
+	
 
 	// Specify CEF global settings here.
 	CefSettings settings;
@@ -84,16 +86,9 @@ BOOL Cmfcwithcef3App::InitInstance()
 #if !CEF_ENABLE_SANDBOX
 	settings.no_sandbox = true;
 #endif
-
+	
 	// Initialize CEF.
-	CefInitialize(main_args, settings, app.get(), sandbox_info);
-
-	// Run the CEF message loop. This will block until CefQuitMessageLoop() is
-	// called.
-	//CefRunMessageLoop();
-
-	// Shut down CEF.
-	//CefShutdown();
+	CefInitialize(main_args, settings, cefapp_.get(), sandbox_info);
 
 	AfxEnableControlContainer();
 
@@ -131,6 +126,7 @@ BOOL Cmfcwithcef3App::InitInstance()
 	}
 
 
+	//CefShutdown();
 	// 由于对话框已关闭，所以将返回 FALSE 以便退出应用程序，
 	//  而不是启动应用程序的消息泵。
 	return FALSE;
@@ -143,4 +139,16 @@ BOOL Cmfcwithcef3App::PumpMessage()
 	
 	CefDoMessageLoopWork();
 	return CWinApp::PumpMessage();
+}
+
+
+int Cmfcwithcef3App::ExitInstance()
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	if( cefapp_->IsBrowserProcess())
+	{
+		CefShutdown();
+	}
+	cefapp_ = NULL;
+	return CWinApp::ExitInstance();
 }

@@ -2,7 +2,7 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 #include "stdafx.h"
-#include "cefsimple/simple_handler.h"
+#include "simple_handler.h"
 
 #include <sstream>
 #include <string>
@@ -21,6 +21,7 @@ SimpleHandler::SimpleHandler()
 	: is_closing_(false) {
 		ASSERT(!g_instance);
 		g_instance = this;
+		is_doclose_called = false;
 }
 
 SimpleHandler::~SimpleHandler() {
@@ -52,6 +53,7 @@ bool SimpleHandler::DoClose(CefRefPtr<CefBrowser> browser) {
 
 	// Allow the close. For windowed browsers this will result in the OS close
 	// event being sent.
+	is_doclose_called = true;
 	return false;
 }
 
@@ -69,7 +71,8 @@ void SimpleHandler::OnBeforeClose(CefRefPtr<CefBrowser> browser) {
 
 	if (browser_list_.empty()) {
 		// All browser windows have closed. Quit the application message loop.
-		CefQuitMessageLoop();
+		
+		//CefQuitMessageLoop();
 	}
 }
 
@@ -115,10 +118,10 @@ void SimpleHandler::OnContainerWndSizeChanged(HWND hParent)
 	RECT rcClient;
 	::GetClientRect(hParent,&rcClient);
 
-	const int margin = 1;//1px;
+	
 
 	CRect rcBrowser(rcClient);
-	rcBrowser.DeflateRect(margin,margin);
+	rcBrowser.DeflateRect(0,20,0,0);
 
 	BrowserList::const_iterator it = browser_list_.begin();
 	for (; it != browser_list_.end(); ++it)
@@ -127,4 +130,23 @@ void SimpleHandler::OnContainerWndSizeChanged(HWND hParent)
 		::MoveWindow(hWnd,rcBrowser.left,rcBrowser.top,rcBrowser.Width(),rcBrowser.Height(),true);	
 	}
 
+}
+
+void SimpleHandler::OpenURL( CefString url )
+{
+
+	if (0 !=browser_list_.size() )
+	{
+		CefRefPtr<CefBrowser> browser = *browser_list_.begin();
+		browser->GetMainFrame()->LoadURL(url);
+	}
+}
+
+void SimpleHandler::Refresh()
+{
+	if (0 !=browser_list_.size() )
+	{
+		CefRefPtr<CefBrowser> browser = *browser_list_.begin();
+		browser->Reload();
+	}
 }

@@ -69,6 +69,9 @@ BEGIN_MESSAGE_MAP(Cmfcwithcef3Dlg, CDialogEx)
 	ON_WM_SIZE()
 	ON_WM_ERASEBKGND()
 	ON_WM_DESTROY()
+	ON_WM_CLOSE()
+	ON_BN_CLICKED(IDC_BUTTON1, &Cmfcwithcef3Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &Cmfcwithcef3Dlg::OnBnClickedButton2)
 END_MESSAGE_MAP()
 
 
@@ -244,7 +247,7 @@ void Cmfcwithcef3Dlg::ReposBrowserPos()
 BOOL Cmfcwithcef3Dlg::OnEraseBkgnd(CDC* pDC)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	return true;
+	
 	return CDialogEx::OnEraseBkgnd(pDC);
 }
 
@@ -254,5 +257,40 @@ void Cmfcwithcef3Dlg::OnDestroy()
 	CDialogEx::OnDestroy();
 
 	// TODO: 在此处添加消息处理程序代码
-	g_handler->CloseAllBrowsers(true);
+	
+}
+
+
+void Cmfcwithcef3Dlg::OnClose()
+{
+	if (g_handler->IsDoCloseCalled())
+	{
+		CDialogEx::OnClose();
+	}
+	else
+	{
+		g_handler->CloseAllBrowsers(false);
+		return;
+	}
+}
+
+
+void Cmfcwithcef3Dlg::OnBnClickedButton1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CFileDialog dlg(true);
+	if(IDOK == dlg.DoModal() )
+	{
+		CString strFilePath = dlg.GetPathName();
+		
+		g_handler->OpenURL((LPCTSTR)strFilePath);
+	}
+
+}
+
+
+void Cmfcwithcef3Dlg::OnBnClickedButton2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	g_handler->Refresh();
 }

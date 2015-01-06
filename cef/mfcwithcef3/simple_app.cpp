@@ -1,8 +1,8 @@
 // Copyright (c) 2013 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
-
-#include "cefsimple/simple_app.h"
+#include "stdafx.h"
+#include "simple_app.h"
 
 #include <string>
 
@@ -12,8 +12,23 @@
 #include "include/cef_command_line.h"
 
 
-SimpleApp::SimpleApp() {
+SimpleApp::SimpleApp():isBrowserProcess_(false) {
 }
+
+void SimpleApp::OnBeforeCommandLineProcessing( const CefString& process_type, CefRefPtr<CefCommandLine> command_line )
+{
+	 command_line->AppendSwitch("no-proxy-server");
+	// browser 进程的 process_type 是空字符串
+	if (0 == process_type.length())
+	{
+		isBrowserProcess_ = true;
+	}
+	else
+	{
+		isBrowserProcess_ = false;
+	}
+}
+
 
 void SimpleApp::OnContextInitialized() {
   REQUIRE_UI_THREAD();
@@ -47,3 +62,4 @@ void SimpleApp::OnContextInitialized() {
 //   CefBrowserHost::CreateBrowser(window_info, handler.get(), url,
 //                                 browser_settings, NULL);
 }
+

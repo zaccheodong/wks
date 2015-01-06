@@ -52,9 +52,13 @@ public:
 
 	bool IsClosing() const { return is_closing_; }
 
+	
 
 public:
 	void OnContainerWndSizeChanged(HWND hParent);
+	void OpenURL(CefString url);
+	void Refresh();
+	bool IsDoCloseCalled(){return is_doclose_called;}
 private:
 	// List of existing browser windows. Only accessed on the CEF UI thread.
 	typedef std::list<CefRefPtr<CefBrowser> > BrowserList;
@@ -62,6 +66,7 @@ private:
 
 	bool is_closing_;
 
+	bool is_doclose_called;
 	// Include the default reference counting implementation.
 	IMPLEMENT_REFCOUNTING(SimpleHandler);
 };

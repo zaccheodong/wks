@@ -12,6 +12,10 @@ class SimpleApp : public CefApp,
  public:
   SimpleApp();
 
+  virtual void OnBeforeCommandLineProcessing(
+	  const CefString& process_type,
+	  CefRefPtr<CefCommandLine> command_line)OVERRIDE;
+
   // CefApp methods:
   virtual CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler()
       OVERRIDE { return this; }
@@ -22,6 +26,12 @@ class SimpleApp : public CefApp,
  private:
   // Include the default reference counting implementation.
   IMPLEMENT_REFCOUNTING(SimpleApp);
+
+
+public:
+	bool IsBrowserProcess()const {return isBrowserProcess_;}
+private:
+	bool isBrowserProcess_;
 };
 
 #endif  // CEF_TESTS_CEFSIMPLE_SIMPLE_APP_H_

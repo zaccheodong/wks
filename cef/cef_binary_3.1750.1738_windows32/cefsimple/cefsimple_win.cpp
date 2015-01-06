@@ -9,7 +9,7 @@
 
 
 // Set to 0 to disable sandbox support.
-#define CEF_ENABLE_SANDBOX 1
+#define CEF_ENABLE_SANDBOX 0
 
 #if CEF_ENABLE_SANDBOX
 // The cef_sandbox.lib static library is currently built with VS2010. It may not
@@ -45,9 +45,11 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
   // CEF applications have multiple sub-processes (render, plugin, GPU, etc)
   // that share the same executable. This function checks the command-line and,
   // if this is a sub-process, executes the appropriate logic.
+  ::MessageBox(NULL,L"begin",L"test",0);
   int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
   if (exit_code >= 0) {
     // The sub-process has completed so return here.
+	::MessageBox(NULL,L"1111",L"test",0);
     return exit_code;
   }
 
@@ -57,6 +59,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
 #if !CEF_ENABLE_SANDBOX
   settings.no_sandbox = true;
 #endif
+
 
   // Initialize CEF.
   CefInitialize(main_args, settings, app.get(), sandbox_info);
