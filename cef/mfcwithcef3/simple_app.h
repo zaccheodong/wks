@@ -6,6 +6,7 @@
 #define CEF_TESTS_CEFSIMPLE_SIMPLE_APP_H_
 
 #include "include/cef_app.h"
+#include "CefRenderProcessHandlerImpl.h"
 
 class SimpleApp : public CefApp,
                   public CefBrowserProcessHandler {
@@ -20,6 +21,9 @@ class SimpleApp : public CefApp,
   virtual CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler()
       OVERRIDE { return this; }
 
+  virtual CefRefPtr<CefRenderProcessHandler> GetRenderProcessHandler() {
+	  return render_pro_handler.get();
+  }
   // CefBrowserProcessHandler methods:
   virtual void OnContextInitialized() OVERRIDE;
 
@@ -32,6 +36,7 @@ public:
 	bool IsBrowserProcess()const {return isBrowserProcess_;}
 private:
 	bool isBrowserProcess_;
+	CefRefPtr<CefRenderProcessHandlerImpl> render_pro_handler;
 };
 
 #endif  // CEF_TESTS_CEFSIMPLE_SIMPLE_APP_H_

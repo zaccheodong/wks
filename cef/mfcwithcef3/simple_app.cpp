@@ -13,6 +13,7 @@
 
 
 SimpleApp::SimpleApp():isBrowserProcess_(false) {
+	render_pro_handler = new CefRenderProcessHandlerImpl();
 }
 
 void SimpleApp::OnBeforeCommandLineProcessing( const CefString& process_type, CefRefPtr<CefCommandLine> command_line )

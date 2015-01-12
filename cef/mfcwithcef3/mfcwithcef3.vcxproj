@@ -115,6 +115,7 @@ xcopy  /Y  /E /F  "..\cef_binary_3.1750.1738_windows32\Release\*.dll"   "$(Solut
     <None Include="res\mfcwithcef3.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CefRenderProcessHandlerImpl.h" />
     <ClInclude Include="mfcwithcef3.h" />
     <ClInclude Include="mfcwithcef3Dlg.h" />
     <ClInclude Include="Resource.h" />
@@ -124,6 +125,7 @@ xcopy  /Y  /E /F  "..\cef_binary_3.1750.1738_windows32\Release\*.dll"   "$(Solut
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CefRenderProcessHandlerImpl.cpp" />
     <ClCompile Include="mfcwithcef3.cpp" />
     <ClCompile Include="mfcwithcef3Dlg.cpp" />
     <ClCompile Include="simple_app.cpp">
