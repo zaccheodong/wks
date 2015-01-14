@@ -23,11 +23,10 @@ END_MESSAGE_MAP()
 
 
 // Cmfcwithcef3App 构造
-
+#include <string>
 Cmfcwithcef3App::Cmfcwithcef3App()
 {
 	// TODO: 在此处添加构造代码，
-	// 将所有重要的初始化放置在 InitInstance 中
 }
 
 

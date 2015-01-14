@@ -150,3 +150,26 @@ void SimpleHandler::Refresh()
 		browser->Reload();
 	}
 }
+
+bool SimpleHandler::OnContextMenuCommand( CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefContextMenuParams> params, int command_id, EventFlags event_flags )
+{
+	ShowDevTools(browser);
+	return false;
+}
+
+void SimpleHandler::ShowDevTools( CefRefPtr<CefBrowser>& browser )
+{
+	CefWindowInfo windowInfo;
+	CefBrowserSettings settings;
+#if defined(OS_WIN)
+	windowInfo.SetAsPopup(browser->GetHost()->GetWindowHandle(), "DevTools");
+#endif
+
+	browser->GetHost()->ShowDevTools(windowInfo, this, settings);
+}
+
+void SimpleHandler::OnBeforeContextMenu( CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefContextMenuParams> params, CefRefPtr<CefMenuModel> model )
+{
+	// Add DevTools items to all context menus.
+	model->AddItem(26500, "&Show DevTools");
+}

@@ -12,7 +12,8 @@
 class SimpleHandler : public CefClient,
 	public CefDisplayHandler,
 	public CefLifeSpanHandler,
-	public CefLoadHandler {
+	public CefLoadHandler ,
+    public CefContextMenuHandler{
 public:
 	SimpleHandler();
 	~SimpleHandler();
@@ -28,6 +29,9 @@ public:
 		return this;
 	}
 	virtual CefRefPtr<CefLoadHandler> GetLoadHandler() OVERRIDE {
+		return this;
+	}
+	virtual CefRefPtr<CefContextMenuHandler> GetContextMenuHandler() {
 		return this;
 	}
 
@@ -52,6 +56,17 @@ public:
 
 	bool IsClosing() const { return is_closing_; }
 
+	virtual void OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
+		CefRefPtr<CefFrame> frame,
+		CefRefPtr<CefContextMenuParams> params,
+		CefRefPtr<CefMenuModel> model) OVERRIDE;
+	virtual bool OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
+		CefRefPtr<CefFrame> frame,
+		CefRefPtr<CefContextMenuParams> params,
+		int command_id,
+		EventFlags event_flags) OVERRIDE;
+
+
 	
 
 public:
@@ -69,6 +84,7 @@ private:
 	bool is_doclose_called;
 	// Include the default reference counting implementation.
 	IMPLEMENT_REFCOUNTING(SimpleHandler);
+	void ShowDevTools( CefRefPtr<CefBrowser>& browser );
 };
 
 #endif  // CEF_TESTS_CEFSIMPLE_SIMPLE_HANDLER_H_

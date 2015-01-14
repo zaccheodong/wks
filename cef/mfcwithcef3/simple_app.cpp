@@ -18,15 +18,17 @@ SimpleApp::SimpleApp():isBrowserProcess_(false) {
 
 void SimpleApp::OnBeforeCommandLineProcessing( const CefString& process_type, CefRefPtr<CefCommandLine> command_line )
 {
-	 command_line->AppendSwitch("no-proxy-server");
+	
 	// browser 进程的 process_type 是空字符串
 	if (0 == process_type.length())
 	{
 		isBrowserProcess_ = true;
+		AfxMessageBox(L"Browser process");
 	}
 	else
 	{
 		isBrowserProcess_ = false;
+		AfxMessageBox(L"Other process");
 	}
 }
 
