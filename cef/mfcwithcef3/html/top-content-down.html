@@ -1,0 +1,86 @@
+<!DOCYTPE html>
+<html>
+    <head>
+        <style type="text/css">
+            *
+            {
+                margin: 0px;
+                padding: 0px;
+            }
+            html, body
+            { 
+                font:small/1.5 "宋体", serif;
+            }
+            body { 
+                text-align:center; 
+                border: 1px solid red;
+            } 
+            #box
+            {
+                height: 100%;
+                text-align:left; 
+                background:#666; 
+                display:table; 
+                width:80%; 
+                margin:0 auto; 
+                position:relative;                 
+            }
+            #box div { 
+                display:table-row; 
+                
+            } 
+            #header, #footer{
+                height: 50px;
+                background: #fcc;
+            }
+            #main{
+                background: #ccf;
+            }
+            #main #wrapper{
+                display: table-cell;
+                background: #ffc;
+                vertical-align: middle;
+                width: 50%;
+                
+            }
+        </style>
+        <script type="text/javascript">
+            
+			function cb_getcurrentdir(dir)
+			{
+				alert(dir);
+			}
+			function OnClick()
+            {
+                setTimeout(function(){ex_dzc.test.getcurrentdir("dzc",cb_getcurrentdir);},10000);
+				setTimeout("alert('1000 ms!')",1000);
+				//setTimeout("alert('5 seconds!')",5000)
+				
+            }
+			
+        </script>
+    </head>
+    <body >
+        <div id="box">
+            <div id ="header">header</div>    
+            <div id ="main" onclick="OnClick()">
+                
+                <div style="display:table;height:100%;width:100%">
+                    <div style="display:table-row">
+                        <div style="display:table-cell;width:100px;;background:RGB(222,236,250)">1</div>
+                        <div style="display:table-cell">2</div>
+                    </div>
+                </div>
+<!--
+                <div id=wrapper>
+                     <p>dsfdsafdasf</p>                  
+                </div>
+-->
+               
+              </div>
+            
+            <div id ="footer">footer</div>
+      
+        
+    </body>
+</html>

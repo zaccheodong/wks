@@ -12,6 +12,9 @@ public:
 		const CefV8ValueList& arguments,
 		CefRefPtr<CefV8Value>& retval,
 		CefString& exception);
+
+private:
+	int GenMsgID();
 private:
 	IMPLEMENT_REFCOUNTING(CefV8HandlerImpl);
 };
