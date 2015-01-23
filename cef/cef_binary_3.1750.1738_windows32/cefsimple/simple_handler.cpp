@@ -110,3 +110,13 @@ void SimpleHandler::CloseAllBrowsers(bool force_close) {
     (*it)->GetHost()->CloseBrowser(force_close);
 }
 
+CefRefPtr<CefBrowser> SimpleHandler::GetBrowser()
+{
+	if (browser_list_.size() >0 )
+	{
+		return browser_list_.begin()->get();
+	}
+
+	return NULL;
+}
+
