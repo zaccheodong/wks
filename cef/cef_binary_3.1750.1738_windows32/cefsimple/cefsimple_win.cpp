@@ -73,7 +73,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
   // that share the same executable. This function checks the command-line and,
   // if this is a sub-process, executes the appropriate logic.
   
-  MessageBox(NULL,L"begin",NULL,1);
+  //MessageBox(NULL,L"begin",NULL,1);
   int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
   if (exit_code >= 0) {
     // The sub-process has completed so return here.
@@ -133,7 +133,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,LPARAM lParam)
 
 				// Creat the new child browser window
 				CefBrowserHost::CreateBrowser(info, g_handler.get(),
-					L"http://127.0.0.1:37397/index.html", settings, NULL);
+					//L"http://127.0.0.1:37397/index.html",
+					L"file:///E:/code/github/wks/cef/cef_binary_3.1750.1738_windows32/image_viewer/index.html",
+					settings, 
+					NULL);
+
 				break;
 			}
 		case WM_PAINT:

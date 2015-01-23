@@ -12,7 +12,11 @@
    
         $(document).ready(function(){            
             
-                      
+             
+            var bkimage = k_shell.getbkimage();
+            
+            
+            $("#imageshow").attr("src",bkimage);
             var doc_width  = $(document).width();
             var doc_height = $(document).height();
             
