@@ -35,7 +35,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <EmbedManifest>true</EmbedManifest>
+    <EmbedManifest>false</EmbedManifest>
     <ExecutablePath>$(ExecutablePath);$(MSBuildProjectDirectory)\..\..\..\third_party\cygwin\bin\;$(MSBuildProjectDirectory)\..\..\..\third_party\python_26\</ExecutablePath>
     <OutDir>out\$(Configuration)\</OutDir>
     <IntDir>$(OutDir)obj\$(ProjectName)\</IntDir>
@@ -369,6 +369,7 @@
     <ClInclude Include="cefsimple\simple_handler.h" />
     <ClInclude Include="cefsimple\util.h" />
     <ClInclude Include="cefsimple\simple_app.h" />
+    <ClInclude Include="utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cefsimple\simple_app.cpp" />
@@ -376,6 +377,7 @@
     <ClCompile Include="cefsimple\simple_handler_win.cpp" />
     <ClCompile Include="cefsimple\cefsimple_win.cpp" />
     <ClCompile Include="CefV8HandlerImpl.cpp" />
+    <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="cefsimple\cefsimple.rc" />

@@ -10,6 +10,7 @@
 #include "cefsimple/util.h"
 #include "include/cef_app.h"
 #include "include/cef_runnable.h"
+#include "utilities.h"
 
 namespace {
 
@@ -118,5 +119,44 @@ CefRefPtr<CefBrowser> SimpleHandler::GetBrowser()
 	}
 
 	return NULL;
+}
+
+//browser进程收到的消息
+bool SimpleHandler::OnProcessMessageReceived( CefRefPtr<CefBrowser> browser, CefProcessId source_process, CefRefPtr<CefProcessMessage> message )
+{
+	CefRefPtr<CefProcessMessage> response = CefProcessMessage::Create("invokeCallback");
+	CefRefPtr<CefListValue> responseArgs = response->GetArgumentList();
+
+	std::string message_name = message->GetName();
+	CefRefPtr<CefListValue> argList = message->GetArgumentList();
+
+	int32 callback_id = -1;
+	int32 error = NO_ERROR;
+
+	if (argList->GetSize()>0)
+	{
+		callback_id = argList->GetInt(0);
+	}
+	responseArgs->SetInt(0,callback_id);
+
+	if (message_name == "getBKImage" )
+	{	
+		CefRefPtr<CefCommandLine> cmdline =CefCommandLine::CreateCommandLine();
+		cmdline->InitFromString(::GetCommandLine());
+		if( cmdline->HasSwitch("bkimage") )
+		{
+			CefString value = cmdline->GetSwitchValue("bkimage");
+			error = 0;
+			responseArgs->SetString(2,value);
+		}
+		else
+		{
+			error = -1;
+		}
+	}
+
+	responseArgs->SetInt(1,error);
+	browser->SendProcessMessage(PID_RENDERER,response);
+	return true;
 }
 

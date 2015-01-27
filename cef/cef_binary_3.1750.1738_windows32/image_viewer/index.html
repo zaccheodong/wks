@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Flexible Box</title>
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type ="text/css" href="style.css">
     <script type="text/javascript"  src="js/jquery.1.4.2-min.js">
     </script>
     
@@ -13,11 +13,11 @@
         $(document).ready(function(){            
             
              
-            var bkimage = k_shell.getbkimage();
-            
-            
-            $("#imageshow").attr("src",bkimage);
-            var doc_width  = $(document).width();
+		function cb_getbkimage(err_no,bkimage)
+		{
+			$("#imageshow").attr("src",bkimage);
+			
+			var doc_width  = $(document).width();
             var doc_height = $(document).height();
             
             var img_block = $('#imageshow');
@@ -97,6 +97,11 @@
                     checking_mousewheel = true;
                 }
             });//mousewheel
+		}
+		k_shell.getbkimage(cb_getbkimage);
+		            
+            
+            
                             
         })
     </script>

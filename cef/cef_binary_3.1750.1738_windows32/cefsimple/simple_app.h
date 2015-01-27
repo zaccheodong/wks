@@ -15,19 +15,37 @@ class SimpleApp : public CefApp,
   SimpleApp();
 
   // CefApp methods:
-  virtual CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler()
-      OVERRIDE { return this; }
+  virtual CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler()OVERRIDE
+  {
+	  return this; 
+  }
 
-  virtual CefRefPtr<CefRenderProcessHandler> GetRenderProcessHandler()OVERRIDE {
-	   return this;
+  virtual CefRefPtr<CefRenderProcessHandler> GetRenderProcessHandler()OVERRIDE 
+  {
+	  return this;
   }
 
   // CefBrowserProcessHandler methods:
   virtual void OnContextInitialized() OVERRIDE;
+  //CefRenderProcessHandler
   virtual void OnWebKitInitialized() OVERRIDE;
- private:
+
+
+  virtual void OnBeforeCommandLineProcessing( const CefString& process_type, CefRefPtr<CefCommandLine> command_line) OVERRIDE;
+
+
+  virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
+										CefProcessId source_process,
+										CefRefPtr<CefProcessMessage> message) OVERRIDE;
+public:
+	bool AddMessageInfo(int32 id ,CefRefPtr<CefV8Context> context,CefRefPtr<CefV8Value> callbackFunction);
+private:
   // Include the default reference counting implementation.
   IMPLEMENT_REFCOUNTING(SimpleApp);
+
+private:
+	typedef std::map<int32 ,std::pair<CefRefPtr<CefV8Context>,CefRefPtr<CefV8Value>>> CallbackMap;
+	CallbackMap callbackmap_;
 };
 
 #endif  // CEF_TESTS_CEFSIMPLE_SIMPLE_APP_H_

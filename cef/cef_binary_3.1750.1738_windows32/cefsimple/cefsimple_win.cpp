@@ -73,7 +73,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
   // that share the same executable. This function checks the command-line and,
   // if this is a sub-process, executes the appropriate logic.
   
-  //MessageBox(NULL,L"begin",NULL,1);
+ // MessageBox(NULL,L"begin",NULL,1);
   int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
   if (exit_code >= 0) {
     // The sub-process has completed so return here.
@@ -98,7 +98,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
   const int nHeight = GetSystemMetrics(SM_CYSCREEN);
   _mainWnd = CreateWindow(_szClassName,
 	  L"dzc",
-	  WS_POPUP|WS_EX_TOPMOST,
+	  WS_POPUP|WS_EX_TOPMOST|WS_EX_LAYERED,
 	  0,0,nWidth, nHeight,NULL,NULL,hInstance,NULL);
   ShowWindow(_mainWnd,nCmdShow);
 
@@ -120,6 +120,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,LPARAM lParam)
 		{
 		case WM_CREATE:
 			{
+				SetWindowLong(hWnd, GWL_EXSTYLE,GetWindowLong(hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
+				SetLayeredWindowAttributes(hWnd,RGB(0,0,0),100,1);
+				
 				// Create the single static handler class instance
 				g_handler = new SimpleHandler();
 

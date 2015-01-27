@@ -57,6 +57,9 @@ class SimpleHandler : public CefClient,
 
   //
   
+  virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
+	  CefProcessId source_process,
+	  CefRefPtr<CefProcessMessage> message)  OVERRIDE;
 public:
 	void OnContainerWndSizeChanged(HWND hParent);
 	CefRefPtr<CefBrowser> GetBrowser();
