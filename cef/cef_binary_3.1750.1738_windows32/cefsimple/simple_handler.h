@@ -14,7 +14,8 @@
 class SimpleHandler : public CefClient,
                       public CefDisplayHandler,
                       public CefLifeSpanHandler,
-                      public CefLoadHandler{
+                      public CefLoadHandler,
+					  public CefContextMenuHandler{
  public:
   SimpleHandler();
   ~SimpleHandler();
@@ -32,6 +33,10 @@ class SimpleHandler : public CefClient,
   virtual CefRefPtr<CefLoadHandler> GetLoadHandler() OVERRIDE {
     return this;
   }
+   virtual CefRefPtr<CefContextMenuHandler> GetContextMenuHandler() OVERRIDE
+   {
+	   return this;
+   }
 
   // CefDisplayHandler methods:
   virtual void OnTitleChange(CefRefPtr<CefBrowser> browser,
@@ -60,6 +65,20 @@ class SimpleHandler : public CefClient,
   virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
 	  CefProcessId source_process,
 	  CefRefPtr<CefProcessMessage> message)  OVERRIDE;
+
+
+  //CefContextMenuHandler
+  virtual void OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
+	  CefRefPtr<CefFrame> frame,
+	  CefRefPtr<CefContextMenuParams> params,
+	  CefRefPtr<CefMenuModel> model)OVERRIDE;
+
+  virtual bool OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
+	  CefRefPtr<CefFrame> frame,
+	  CefRefPtr<CefContextMenuParams> params,
+	  int command_id,
+	  EventFlags event_flags) OVERRIDE;
+
 public:
 	void OnContainerWndSizeChanged(HWND hParent);
 	CefRefPtr<CefBrowser> GetBrowser();

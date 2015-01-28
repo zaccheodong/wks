@@ -22,12 +22,13 @@ const wchar_t* _szClassName =L"CLS_CEF_IMG_VIEWER";
 HWND _mainWnd;
 
 CefRefPtr<SimpleHandler> g_handler;
-
+HBRUSH g_hBKBrush;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,LPARAM lParam);
 
 ATOM MyRegisterClass(HINSTANCE hInstance) {
 	WNDCLASSEX wcex;
 
+	g_hBKBrush = (HBRUSH)::CreateSolidBrush(RGB(255,0,0));
 	wcex.cbSize = sizeof(WNDCLASSEX);
 
 	wcex.style         = CS_HREDRAW | CS_VREDRAW;
@@ -37,6 +38,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance) {
 	wcex.hInstance     = hInstance;
 	wcex.hIcon         = NULL;//LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CEFCLIENT));
 	wcex.hCursor       = NULL;//LoadCursor(NULL, IDC_ARROW);
+	//wcex.hbrBackground = g_hBKBrush;
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
 	wcex.lpszMenuName  = NULL;//MAKEINTRESOURCE(IDC_CEFCLIENT);
 	wcex.lpszClassName = _szClassName;
@@ -73,7 +75,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
   // that share the same executable. This function checks the command-line and,
   // if this is a sub-process, executes the appropriate logic.
   
- // MessageBox(NULL,L"begin",NULL,1);
+  MessageBox(NULL,L"begin",NULL,1);
   int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
   if (exit_code >= 0) {
     // The sub-process has completed so return here.
@@ -194,6 +196,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,LPARAM lParam)
 					// (this avoids flashing)
 					return 0;
 				}
+				
+				
+			}
+			else
+			{
+				RECT rc;
+				::GetClientRect(hWnd,&rc);
+				
+				HDC hdc = ::GetDC(hWnd);				
+				::SetBkColor(hdc, RGB(0,0,0));
+				::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
+
 			}
 			break;
 

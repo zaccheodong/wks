@@ -154,9 +154,56 @@ bool SimpleHandler::OnProcessMessageReceived( CefRefPtr<CefBrowser> browser, Cef
 			error = -1;
 		}
 	}
+	if (message_name == "appQuit")
+	{
+		BrowserList::iterator it = browser_list_.begin();
+		while(it != browser_list_.end())
+		{
+			(*it)->GetHost()->CloseBrowser(false);
+			++it;
+		}
+	}
 
 	responseArgs->SetInt(1,error);
 	browser->SendProcessMessage(PID_RENDERER,response);
 	return true;
 }
+
+
+void SimpleHandler::OnBeforeContextMenu( CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, 
+	CefRefPtr<CefContextMenuParams> params, CefRefPtr<CefMenuModel> model )
+{
+	
+	model->AddItem(MENU_ID_USER_FIRST+1,L"refresh");
+	model->AddItem(MENU_ID_USER_FIRST+2,L"show devtools");
+}
+
+bool SimpleHandler::OnContextMenuCommand( CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, 
+	CefRefPtr<CefContextMenuParams> params, int command_id, EventFlags event_flags )
+{
+	
+	bool bhandled = false;
+	switch (command_id)
+	{
+	case MENU_ID_USER_FIRST+1:
+		{
+			browser->Reload();
+			bhandled = true;
+			break;
+		}
+	case MENU_ID_USER_FIRST+2:
+		{
+			CefWindowInfo wi;
+			CefBrowserSettings settings;
+			wi.SetAsPopup(NULL, "DevTools");
+
+			browser->GetHost()->ShowDevTools(wi, browser->GetHost()->GetClient(), settings);
+			bhandled = true;
+			break;;
+		}
+	}
+	
+	return bhandled;
+}
+
 
