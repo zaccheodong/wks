@@ -38,50 +38,18 @@
                 transition: ease 0.6s all;
                 
             }
-            #close{
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 50px;
-                height: 50px;
-            }
-            #close_btn{
-                width: 100%;
-                height: 100%;
-            }
         </style>
         <script src ="js/jquery-1.8.3.js" > </script>
         <script src ="js/jquery.mousewheel.js" > </script>
         <script type="text/javascript">
             $(document).ready(function(){
-            
-            //背景DIV铺满    
-            $("#container").css({
-              "width":$(document).width(),
-              "height":$(document).height()
-            });
-            
-            //获取图片
-            k_shell.getbkimage(cb_getbkimage);
-                
-            function cb_getbkimage(err_no,bkimage)
-		    {
-                //设置图片
-                $('#image').load(on_image_loaded);
-                $('#image').attr("src",bkimage);            
-		    }
-            
-            
-            
-            function on_image_loaded()
-            {
-                 var c  = $("#container"),
+                var c  = $("#container"),
                     im = $("#image"),
                     z  = $("#zoom");
+                c.css({"width":$(document).width(),"height":$(document).height()});
                 
-                
-                var imageHeight = im.width(),
-                    imageWidth  = im.height(),
+                var imageHeight = 480,
+                    imageWidth  = 640,
                     contWidth   = c.width(),
                     contHeight  = c.height();
                 
@@ -100,8 +68,16 @@
                 var moveSmooth=0.2;
                 
                 var zoomFactorInvertLog = 1/Math.log(zoomFactor);
+//                c.bind('mousewheel',function(e,delta){
+//                    var coffset =  c.offset();
+//                    
+//                    mouseLocation.x = e.pageX - coffset.left;
+//                    mouseLocation.y = e.pageY - coffset.top;
+//                    
+//                    var newZoom = Math.max(minZoom,Math.min(maxZoom,currentScale*(1+delta*zoomFactor)));
+//                    zoom(newZoom);
+//                });
                 c.on('mousewheel',function(e,delta){
-                    console.log("mousewheel delta:"+delta);
                     var coffset =  c.offset();
                     
                     mouseLocation.x = e.pageX - coffset.left;
@@ -135,24 +111,15 @@
                     im.css(newCss);
                     currentScale = scale;
                 }
-            }
-               
-            
-            
             });
-            function on_click_close()
-            {
-                k_shell.appquit();
-            }
-            
       </script>
     </head>
     <body>
         <div id="container">
-            <img id="image" />
+            <img id="image" width ="640" height="480" src="http://blog.weflyspitfires.com/wp-content/uploads/2012/04/World-of-Wacraft-wallpaper.jpg"/>
             
-            <div id="close" onclick="on_click_close()">
-                <img id="close_btn" src="./close.png"/>
+            <div id="zoom_wrapper">
+                <div id="zoom"></div>
             </div>
         </div>
     </body>

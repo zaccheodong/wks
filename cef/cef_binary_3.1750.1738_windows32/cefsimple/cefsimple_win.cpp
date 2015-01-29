@@ -75,7 +75,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
   // that share the same executable. This function checks the command-line and,
   // if this is a sub-process, executes the appropriate logic.
   
-  MessageBox(NULL,L"begin",NULL,1);
+ // MessageBox(NULL,L"begin",NULL,1);
   int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
   if (exit_code >= 0) {
     // The sub-process has completed so return here.
