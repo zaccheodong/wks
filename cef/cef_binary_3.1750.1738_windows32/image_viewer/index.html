@@ -10,8 +10,7 @@
                 overflow: hidden;
             }
             #container{
-                width: 400px;
-                height: 300px;
+             
                 border: 1px solid black;
                 overflow: hidden;
                 position: relative;
@@ -33,9 +32,10 @@
                 position: absolute;
                 top: 0;
                 left: 0;                
-                right: 0;
-                bottom: 0;
-                transition: ease 0.6s all;
+            //   right: 0;
+            //    bottom: 0;
+             //   transition: ease 0.6s all;
+                cursor: move;
                 
             }
             #close{
@@ -48,6 +48,27 @@
             #close_btn{
                 width: 100%;
                 height: 100%;
+            }
+             #zoom_display {
+                position:  absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 70px;
+                height: 20px;
+                margin: auto;
+                background-color: #444;
+                text-align: center;
+                border-radius: 5px 5px;
+                display: none;
+                
+            }
+
+             #zoom_display span {
+                color: white;
+                font-family: sans-serif;
+                font-weight: 400;
             }
         </style>
         <script src ="js/jquery-1.8.3.js" > </script>
@@ -80,13 +101,19 @@
                     z  = $("#zoom");
                 
                 
-                var imageHeight = im.width(),
-                    imageWidth  = im.height(),
+                var imageHeight = im.height(),
+                    imageWidth  = im.width(),
                     contWidth   = c.width(),
                     contHeight  = c.height();
-                
                 var ratio = Math.min(contWidth*0.9/imageWidth,contHeight*0.9/imageHeight);
+                
+                var newImW = imageWidth*ratio;
+                var newImH = imageHeight*ratio;
+                
+                
                 im.css({
+                        "left":(contWidth-newImW)/2+"px",
+                        "top":(contHeight - newImH)/2+"px",
                         "height":imageHeight*ratio+"px",
                         "width":imageWidth*ratio+"px"
                 });
@@ -100,7 +127,28 @@
                 var moveSmooth=0.2;
                 
                 var zoomFactorInvertLog = 1/Math.log(zoomFactor);
+                
+                var zooming = false;
+                var zoom_time  = new Date().getTime();
+                 function iszooming()
+                {
+                     var now  = new Date().getTime();
+                    if(!zooming)
+                        return false;
+                    if(now - zoom_time>1000)
+                    {
+                        zooming = false;
+                        return false;
+                    }
+                    
+                    return true;
+                }
+                
                 c.on('mousewheel',function(e,delta){
+                    
+                    zoom_time  = new Date().getTime();
+                    zooming = true;
+                    
                     console.log("mousewheel delta:"+delta);
                     var coffset =  c.offset();
                     
@@ -108,7 +156,17 @@
                     mouseLocation.y = e.pageY - coffset.top;
                     
                     var newZoom = Math.max(minZoom,Math.min(maxZoom,currentScale*(1+delta*zoomFactor)));
+                    
+                    $('#zoom_display').css({"display":"block"});
                     zoom(newZoom);
+                    $('#zoom_display>span').text(parseInt(newZoom*100)+"%");
+                    setTimeout(function(){
+                        if(!iszooming())
+                           $('#zoom_display').fadeOut(1000);
+                        }
+                        ,2000);
+                    
+                  
                 });
                 
                 function zoom(scale)
@@ -135,6 +193,41 @@
                     im.css(newCss);
                     currentScale = scale;
                 }
+                
+                
+                var mouse_down_on_image = false;
+                var pos_moue_down ={};
+                function onMouseDown(e)
+                {
+                    if(e.preventDefault)
+                        e.preventDefault();
+                    
+                    pos_moue_down.x = e.pageX;
+                    pos_moue_down.y = e.pageY;
+                    document.onmousemove = onMouseMove;
+					document.onmouseup = function() {
+						document.onmousemove = null;
+						document.onmouseup = null;
+					};
+                  }
+                 function onMouseMove(e)
+                {
+                               
+                    var xoffset = e.pageX  - pos_moue_down.x ;
+                    var yoffset = e.pageY-  pos_moue_down.y;
+                    console.log("down:"+pos_moue_down.x+","+pos_moue_down.y+" cur:"+ e.pageX+","+e.pageY+" offset:"+xoffset+","+yoffset);
+                    
+                    var curLeft = parseInt(im.css("left"));
+                    var curTop = parseInt(im.css("top"));
+                    
+                    im.css({
+                        "left":curLeft+xoffset+'px',
+                        "top":curTop+yoffset+'px'
+                        });
+                    pos_moue_down.x = e.pageX;
+                    pos_moue_down.y = e.pageY;
+                }
+                $("#image").on("mousedown",onMouseDown) ;
             }
                
             
@@ -153,6 +246,9 @@
             
             <div id="close" onclick="on_click_close()">
                 <img id="close_btn" src="./close.png"/>
+            </div>
+             <div id="zoom_display">
+                <span>dfdfdfdfdf</span>                
             </div>
         </div>
     </body>

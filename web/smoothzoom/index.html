@@ -10,9 +10,8 @@
                 overflow: hidden;
             }
             #container{
-                width: 400px;
-                height: 300px;
-                border: 1px solid black;
+             
+/*                border: 1px solid black;*/
                 overflow: hidden;
                 position: relative;
 /*
@@ -22,22 +21,40 @@
                 background: #151515;
                     
             }
-            #zoom_wrapper{
-                position: absolute;
-                z-index: 1;
-                left: 30px;
-                top: 30px;
-            }
+            
             #image{
                 margin: auto;
                 position: absolute;
                 top: 0;
                 left: 0;                
-                right: 0;
-                bottom: 0;
+               // right: 0;
+                //bottom: 0;
                 transition: ease 0.6s all;
+                cursor: move;
                 
             }
+            #zoom_display {
+                position:  absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 70px;
+                height: 20px;
+                margin: auto;
+                background-color: #444;
+                text-align: center;
+                border-radius: 5px 5px;
+                display: none;
+                
+            }
+
+             #zoom_display span {
+                color: white;
+                font-family: sans-serif;
+                font-weight: 400;
+            }
+
         </style>
         <script src ="js/jquery-1.8.3.js" > </script>
         <script src ="js/jquery.mousewheel.js" > </script>
@@ -77,14 +94,48 @@
 //                    var newZoom = Math.max(minZoom,Math.min(maxZoom,currentScale*(1+delta*zoomFactor)));
 //                    zoom(newZoom);
 //                });
+                
+                zooming = false;
+                zoom_time  = new Date().getTime();
+                function iszooming()
+                {
+                     var now  = new Date().getTime();
+                    if(!zooming)
+                        return false;
+                    if(now - zoom_time>1000)
+                    {
+                        zooming = false;
+                        return false;
+                    }
+                    
+                    return true;
+                }
                 c.on('mousewheel',function(e,delta){
+                    
+                    zoom_time  = new Date().getTime();
+                    zooming = true;
+                    
                     var coffset =  c.offset();
                     
                     mouseLocation.x = e.pageX - coffset.left;
                     mouseLocation.y = e.pageY - coffset.top;
                     
                     var newZoom = Math.max(minZoom,Math.min(maxZoom,currentScale*(1+delta*zoomFactor)));
+                    $('#zoom_display').css({"display":"block"});
+                    
                     zoom(newZoom);
+                    $('#zoom_display>span').text(parseInt(newZoom*100)+"%");
+                    
+                    //setTimeout("$('#zoom_display').css({"display":"none"}",100);
+                    //$('#zoom_display').animate({"display":"none"});
+                    
+                    
+                    setTimeout(function(){
+                        if(!iszooming())
+                           $('#zoom_display').fadeOut(1000);
+                        }
+                    ,2000);
+                    
                 });
                 
                 function zoom(scale)
@@ -111,15 +162,75 @@
                     im.css(newCss);
                     currentScale = scale;
                 }
+                
+                var mouse_down_on_image = false;
+                var pos_moue_down ={};
+                function onMouseDown(e)
+                {
+                    if(e.preventDefault)
+                        e.preventDefault();
+                    
+                    pos_moue_down.x = e.pageX;
+                    pos_moue_down.y = e.pageY;
+                    document.onmousemove = onMouseMove;
+					document.onmouseup = function() {
+						document.onmousemove = null;
+						document.onmouseup = null;
+					};
+                    
+                    
+                    
+                }
+                 function onMouseUp(e)
+                {
+                   
+                    
+                    
+                    
+                }
+                function onMouseMove(e)
+                {
+                               
+                    var xoffset = e.pageX  - pos_moue_down.x ;
+                    var yoffset = e.pageY-  pos_moue_down.y;
+                    console.log("down:"+pos_moue_down.x+","+pos_moue_down.y+" cur:"+ e.pageX+","+e.pageY+" offset:"+xoffset+","+yoffset);
+                    
+//                     if(!mouse_down_on_image)
+//                        return;
+//                    
+//                    if(Math.abs(xoffset) <30 )
+//                        return;
+//                    
+//                    if(Math.abs(yoffset)<30)
+//                        return;
+                    var curLeft = parseInt(im.css("left"));
+                    var curTop = parseInt(im.css("top"));
+                    
+                    im.css({
+                        "left":curLeft+xoffset+'px',
+                        "top":curTop+yoffset+'px'
+                        });
+                    pos_moue_down.x = e.pageX;
+                    pos_moue_down.y = e.pageY;
+                }
+                $("#image").on("mousedown",onMouseDown) ;
+//                $("#image").on("mouseup",onMouseUp) ;
+//                 $("#image").on("mousemove",onMouseMove) ;
+//
+//                $(document).on("mousedown",onMouseMove) ;
+//                $(document).on("mousedown",onMouseMove) ;
+                
+                
+                
             });
       </script>
     </head>
     <body>
         <div id="container">
-            <img id="image" width ="640" height="480" src="http://blog.weflyspitfires.com/wp-content/uploads/2012/04/World-of-Wacraft-wallpaper.jpg"/>
+            <img id="image" width ="640" height="480" src="./index.jpg"/>
             
-            <div id="zoom_wrapper">
-                <div id="zoom"></div>
+            <div id="zoom_display">
+                <span>dfdfdfdfdf</span>                
             </div>
         </div>
     </body>
