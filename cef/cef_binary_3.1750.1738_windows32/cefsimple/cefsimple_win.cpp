@@ -139,7 +139,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,LPARAM lParam)
 				// Creat the new child browser window
 				CefBrowserHost::CreateBrowser(info, g_handler.get(),
 					//L"http://127.0.0.1:37397/index.html",
-					L"file:///E:/code/github/wks/cef/cef_binary_3.1750.1738_windows32/image_viewer/index.html",
+					L"file:///./image_viewer/index.html",
 					settings, 
 					NULL);
 
