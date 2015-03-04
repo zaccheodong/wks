@@ -28,7 +28,7 @@
             if(content != ''){
                 var obj={
                     userid:this.userid,
-                    username:this.usernamme,
+                    username:this.username,
                     content:content
                 };
                 this.socket.emit('message',obj);
@@ -81,7 +81,7 @@
         
         init:function(username){
             //客户端根据时间和随机数生成UID，这样使的聊天室用户名称可以重复
-            this.userid = this.genUid;
+            this.userid = this.genUid();
             this.username = username;
             
             d.getElementById("showusername").innerHTML = this.username;
@@ -106,8 +106,8 @@
             
             //监听消息发送
             this.socket.on("message",function(obj){
-                var isme =(obj.userid == CHAT.userid)? true:false;
-                var conentDiv=''+obj.content+'';
+                var issame =(obj.userid == CHAT.userid)? true:false;
+                var contentDiv='<br\>'+obj.content+'<br\>';
                 
                 var usernameDiv =" " +obj.username;
                 var section = d.createElement("section");
